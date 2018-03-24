@@ -4,8 +4,9 @@ Simplifications:  only allow discard and roll, only score against upper level
 """
 
 # Used to increase the timeout, if necessary
-import codeskulptor
-codeskulptor.set_timeout(20)
+# import codeskulptor
+# codeskulptor.set_timeout(20)
+
 
 def gen_all_sequences(outcomes, length):
     """
@@ -34,7 +35,10 @@ def score(hand):
 
     Returns an integer score 
     """
-    return 0
+    scores = [item * hand.count(item) for item in range(1, 7)
+              if item in hand]
+    print scores
+    return max(scores)
 
 
 def expected_value(held_dice, num_die_sides, num_free_dice):
@@ -90,5 +94,5 @@ def run_example():
 run_example()
 
 
-#import poc_holds_testsuite
-#poc_holds_testsuite.run_suite(gen_all_holds)
+# import poc_holds_testsuite
+# poc_holds_testsuite.run_suite(gen_all_holds)
